@@ -4,6 +4,8 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { UsersController } from './Controllers/Controller_Users.js';
 import { UsersService } from './Service/Service_Users.js';
+import { BicyclesController } from './Controllers/Controller_Bicycles.js';
+import { BicyclesService } from './Service/Service_Bicycles.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -15,7 +17,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'bicicleta',
     }),
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+  controllers: [AppController, UsersController, BicyclesController],
+  providers: [AppService, UsersService, BicyclesService],
 })
 export class AppModule {}
