@@ -69,24 +69,26 @@ Cuando estés listo para desplegar tu aplicación NestJS a producción, sigue es
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
-## Observability
+## Observabilidad
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+En aplicaciones de producción, la observabilidad es fundamental para monitorear el comportamiento del sistema, detectar fallos tempranos y garantizar un rendimiento estable.
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+Este proyecto permite integrarse con **NestJS Observe** para obtener telemetría detallada con una configuración mínima:
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
+- **Trazado distribuido y análisis de ejecución:** Sigue el flujo de las peticiones en e identifica cuellos de botella u operaciones lentas.
+- **Rendimiento y métricas en tiempo real:** Analiza el estado del sistema y rastrea métricas clave de infraestructura.
+- **Logs y seguimiento de errores:** Centraliza los registros correlacionados con trazas para facilitar la depuración.
+- **Monitoreo de SLA y Alertas:** Recibe notificaciones inmediatas ante fallos críticos o degradación del servicio.
 
-This project is already instrumented. Create a free account at [observe.nestjs.com](https://observe.nestjs.com), add an application, and paste the generated app key and secret into the `ObserveModule.forRoot()` call in `src/app.module.ts`.
+---
 
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
+###  Configuración
+
+1. Crea una cuenta gratuita en [observe.nestjs.com](https://observe.nestjs.com).
+2. Registra la aplicación para generar la **App Key** y el **Secret**.
+3. Añade las credenciales obtenidas en el módulo `ObserveModule.forRoot()` dentro del archivo `src/app.module.ts`.
+
+> **Nota:** El plan gratuito incluye hasta 300.000 eventos al mes sin requerir tarjeta de crédito.
 
 ## Resources
 
