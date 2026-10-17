@@ -1,9 +1,9 @@
 export interface Rental {
-  id: number;
-  userId: number;
-  bikeId: number;
-  startTime: Date;
-  endTime?: Date;
+  id: string;
+  bikeId: string;
+  userId: string;
+  startTime: string;
+  endTime?: string;
   totalCost?: number;
-  status: 'activo' | 'finalizado';
+  status: string;
 }
