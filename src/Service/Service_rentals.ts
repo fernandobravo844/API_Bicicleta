@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import{ Rental } from '../Model/Model_rentals.js';
+import {CreateRentalDto} from '../Dto/Dto_Rentals.js';
 
  
 @Injectable()
@@ -11,12 +12,12 @@ export class RentalsService {
         { id: "2", userId: "2", bikeId: "2", startTime: "2026-10-17T09:30:00", status: "activo" },
     ];
  
-    //Creamos el metodo para iniciar un alquiler
-    create(userId: string, bikeId: string): Rental {
+    //Creamos el metodo para iniciar un alquiler usando el DTO
+    create(dto: CreateRentalDto): Rental {
         const rental: Rental = {
             id: String(this.rentals.length + 1),
-            userId,
-            bikeId,
+            userId: dto.userId,
+            bikeId: dto.bikeId,
             startTime: new Date().toISOString(),
             status: "activo",
         };
