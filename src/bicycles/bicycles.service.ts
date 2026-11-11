@@ -43,4 +43,19 @@ export class BicyclesService implements OnModuleInit {
         if (!bike) throw new NotFoundException(`Bicicleta ${id} no encontrada`);
         return bike;
     }
+
+    // Crear una nueva bicicleta
+    async create(data: Partial<Bicycle>): Promise<Bicycle> {
+         const bicycle = this.bicyclesRepo.create(data);
+        return this.bicyclesRepo.save(bicycle);
+    }
+
+    async delete(id: string) {
+        const bike = await this.findOne(id);
+        await this.bicyclesRepo.remove(bike);
+        return {
+            message: 'Bicicleta eliminada correctamente',
+            data: bike,
+        };
+    }
 }
