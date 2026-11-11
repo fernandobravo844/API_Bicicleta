@@ -3,8 +3,9 @@ import {
     Param,
     Query,
     Get,
+    ParseUUIDPipe,
 } from '@nestjs/common';
-import { BicyclesService } from '../Service/Service_Bicycles.js';
+import { BicyclesService } from './bicycles.service.js';
 
 @Controller("bicycles")
 export class BicyclesController {
@@ -21,8 +22,8 @@ export class BicyclesController {
   }
 
   // GET /bicycles/:id
-  @Get(":id")
-  getBicycle(@Param("id") id: string) {
-    return this.BicycleService.findOne(id);
-  }
+@Get(":id")
+getBicycle(@Param("id", ParseUUIDPipe) id: string) {
+  return this.BicycleService.findOne(id);
+}
 }
