@@ -8,9 +8,7 @@ import { AppService } from './app.service.js';
 
 import { BicyclesModule } from './bicycles/bicycles.module.js';
 import { UsersModule } from './users/users.module.js';
-
-import { RentalsController } from './Controllers/controller_Rentals.js';
-import { RentalsService } from './Service/Service_rentals.js';
+import { RentalsModule } from './rentals/rentals.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -30,11 +28,11 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         synchronize: true,
       }),
     }),
-    UsersModule,
     BicyclesModule,
     UsersModule,
+    RentalsModule,
   ],
-  controllers: [AppController, RentalsController],
-  providers: [AppService, RentalsService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
