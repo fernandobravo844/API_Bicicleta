@@ -7,7 +7,7 @@ import {
      Param, 
      Query } from '@nestjs/common';
 import { RentalsService } from '../Service/Service_rentals.js';
-import { CreateRentalDto } from '../Dto/Dto_Rentals.js';
+import { CreateRentalDto } from '../rentals/dto/Dto_Rentals.js';
  
 @Controller('rentals')
 export class RentalsController {
