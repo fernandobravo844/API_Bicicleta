@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import{ Rental } from '../Model/Model_rentals.js';
-import {CreateRentalDto} from '../Dto/Dto_Rentals.js';
+import {CreateRentalDto} from '../rentals/dto/Dto_Rentals.js';
 
  
 @Injectable()
