@@ -1,21 +1,16 @@
 import { Module } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
-
-import { UsersController } from './Controllers/Controller_Users.js';
-import { UsersService } from './Service/Service_Users.js';
-
-import { BicyclesModule } from './bicycles/bicycles.module.js';
-
-import { RentalsController } from './Controllers/controller_Rentals.js';
-import { RentalsService } from './Service/Service_rentals.js';
-
-
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { AppController } from './app.controller.js';
+import { AppService } from './app.service.js';
 
+import { BicyclesModule } from './bicycles/bicycles.module.js';
+import { UsersModule } from './users/users.module.js';
+
+import { RentalsController } from './Controllers/controller_Rentals.js';
+import { RentalsService } from './Service/Service_rentals.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -36,8 +31,9 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       }),
     }),
     BicyclesModule,
+    UsersModule,
   ],
-  controllers: [AppController, UsersController, RentalsController],
-  providers: [AppService, UsersService, RentalsService],
+  controllers: [AppController, RentalsController],
+  providers: [AppService, RentalsService],
 })
 export class AppModule {}
