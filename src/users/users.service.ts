@@ -13,7 +13,6 @@ export class UsersService implements OnModuleInit {
     private readonly usersRepo: Repository<User>,
   ) {}
 
-  // Datos iniciales: solo se insertan si la tabla está vacía
   async onModuleInit() {
     if ((await this.usersRepo.count()) > 0) return;
     await this.usersRepo.save([
@@ -22,19 +21,16 @@ export class UsersService implements OnModuleInit {
     ]);
   }
 
-  // Listar todos los usuarios
   findAll(): Promise<User[]> {
     return this.usersRepo.find({ order: { createdAt: 'ASC' } });
   }
 
-  // Ver el detalle de un usuario
   async findOne(id: string): Promise<User> {
     const user = await this.usersRepo.findOneBy({ id });
     if (!user) throw new NotFoundException(`Usuario ${id} no encontrado`);
     return user;
   }
 
-  // Crear un usuario nuevo (el email debe ser único)
   async create(dto: CreateUserDto) {
     const email = dto.email.toLowerCase();
     await this.ensureEmailAvailable(email);
@@ -42,7 +38,6 @@ export class UsersService implements OnModuleInit {
     return { message: 'Usuario creado con éxito', data: user };
   }
 
-  // Editar un usuario (acepta cambios parciales)
   async update(id: string, changes: UpdateUserDto) {
     const user = await this.findOne(id);
     if (changes.email) {
@@ -53,7 +48,6 @@ export class UsersService implements OnModuleInit {
     return { message: 'Usuario actualizado con éxito', data: updated };
   }
 
-  // Eliminar un usuario
   async remove(id: string) {
     const user = await this.findOne(id);
     await this.usersRepo.remove(user);

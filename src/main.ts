@@ -6,7 +6,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     instrument: ObserveInstrument,
   });
-  // Activa la validación de los DTOs (class-validator) en todos los endpoints
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

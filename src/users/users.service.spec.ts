@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { UsersService } from './users.service.js';
 import { User } from './entities/user.entity.js';
 
-// Repositorio falso en memoria con los métodos que usa el servicio
 function createFakeRepo() {
   let rows: User[] = [];
   let seq = 0;
