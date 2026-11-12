@@ -30,6 +30,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
         synchronize: true,
       }),
     }),
+    UsersModule,
     BicyclesModule,
     UsersModule,
   ],
