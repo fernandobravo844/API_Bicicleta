@@ -14,7 +14,6 @@ export class RentalsService {
         @InjectRepository(Bicycle) private readonly bicyclesRepo: Repository<Bicycle>,
     ) {}
 
-    // Iniciar un alquiler usando el DTO
     async create(dto: CreateRentalDto): Promise<Rental> {
         if (!(await this.usersRepo.existsBy({ id: dto.userId }))) {
             throw new NotFoundException(`Usuario ${dto.userId} no encontrado`);
@@ -31,7 +30,6 @@ export class RentalsService {
         return this.rentalsRepo.save(rental);
     }
 
-    // Listar alquileres (opcionalmente por estado)
     async findAll(status?: string): Promise<Rental[]> {
         if (status && !RENTAL_STATUSES.includes(status as RentalStatus)) {
             throw new BadRequestException(`Estado inválido: ${status}`);
@@ -39,14 +37,12 @@ export class RentalsService {
         return this.rentalsRepo.find({ where: status ? { status: status as RentalStatus } : {} });
     }
 
-    // Detalle de un alquiler
     async findOne(id: string): Promise<Rental> {
         const rental = await this.rentalsRepo.findOneBy({ id });
         if (!rental) throw new NotFoundException(`Alquiler ${id} no encontrado`);
         return rental;
     }
 
-    // Finalizar un alquiler
     async finish(id: string): Promise<Rental> {
         const rental = await this.findOne(id);
         if (rental.status === 'finalizado') {
