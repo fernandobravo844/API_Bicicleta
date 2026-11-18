@@ -11,7 +11,6 @@ export class BicyclesService implements OnModuleInit {
         private readonly bicyclesRepo: Repository<Bicycle>,
     ) {}
 
-    // Datos iniciales: solo se insertan si la tabla está vacía
     async onModuleInit() {
         if ((await this.bicyclesRepo.count()) > 0) return;
         await this.bicyclesRepo.save([
@@ -22,7 +21,6 @@ export class BicyclesService implements OnModuleInit {
         ]);
     }
 
-    // Listar bicicletas con filtros opcionales (sin distinguir mayúsculas)
     async findAll(filters: { status?: string; type?: string; location?: string } = {}): Promise<Bicycle[]> {
         const qb = this.bicyclesRepo.createQueryBuilder('bike');
         if (filters.status) {
@@ -37,14 +35,12 @@ export class BicyclesService implements OnModuleInit {
         return qb.getMany();
     }
 
-    // Ver el detalle de una bicicleta
     async findOne(id: string): Promise<Bicycle> {
         const bike = await this.bicyclesRepo.findOneBy({ id });
         if (!bike) throw new NotFoundException(`Bicicleta ${id} no encontrada`);
         return bike;
     }
 
-    // Crear una nueva bicicleta
     async create(data: Partial<Bicycle>): Promise<Bicycle> {
          const bicycle = this.bicyclesRepo.create(data);
         return this.bicyclesRepo.save(bicycle);

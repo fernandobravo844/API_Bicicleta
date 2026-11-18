@@ -34,7 +34,6 @@ export class BicyclesController {
         return this.BicycleService.create(body);
     }
 
-    // Eliminar una bicicleta
     @Delete(':id')
       deleteBicycle(@Param('id', ParseUUIDPipe) id: string) {
       return this.BicycleService.delete(id);
